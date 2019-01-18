@@ -1,0 +1,8 @@
+---
+- hosts: webServers 
+  tasks: 
+    - shell: echo "{{item}}"
+      with_items:
+        - hello
+        - ansible
+        - with_items

@@ -1,0 +1,14 @@
+---
+- hosts: webServers 
+  tasks:
+    - name: echo ...
+      shell: echo "name={{item.name}},age={{item.age}}"
+      with_items:
+        - {name: zhangsan,age: 32}
+        - {name: ls,age: 33}
+        - {name: wangwe,age: 35}
+      register: who
+    - name: echo debug var
+      debug: var=who
+    - name: echo debug msg
+      debug: msg="{% for i in who.results %} {{i.stdout}} {% endfor %}" 

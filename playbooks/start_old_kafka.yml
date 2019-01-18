@@ -1,0 +1,8 @@
+---
+- hosts: kafka
+  tasks:
+    - name: kill kafka current
+      shell: kill -9 `ps ax | grep -i kafka |grep java|grep -v grep | awk '{ print $1}'`
+
+    - name: start old kafka
+      shell: nohup sh /home/hadoop/apps/kafka/bin/kafka-server-start.sh /home/hadoop/apps/kafka/config/server.properties &

@@ -1,0 +1,2 @@
+kafkaPackage: "kafka_2.12-1.0.0.tgz"
+destPath: "/home/hadoop/apps"

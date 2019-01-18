@@ -1,0 +1,8 @@
+---
+- hosts: webServers
+  tasks:
+    - name: echo date
+      shell: date
+      register: result
+    - name: show debug info
+      debug: var=result.stdout verbosity=0

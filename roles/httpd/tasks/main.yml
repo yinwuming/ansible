@@ -1,0 +1,6 @@
+---
+- name: ensure apache is at the latest version
+  yum: pkg={{servicennames}} state=latest
+  template: src=/etc/ansible/templates/httpd.conf.j2 dest=/etc/httpd/conf/httpd.conf
+- name: restart httpd server
+  service: name=httpd enable=true state=restarted

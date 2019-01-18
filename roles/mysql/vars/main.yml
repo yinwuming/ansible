@@ -1,0 +1,2 @@
+mysql_port: "3306"
+datadir: "/home/hadoop/apps/mysql/data"

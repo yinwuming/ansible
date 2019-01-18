@@ -1,0 +1,18 @@
+---
+- name: make sure mysql is installed
+  yum: name=mysql-server state=installed
+
+- name: do something o initialize mysql
+  file: path={{datadir}} state=directory mode=0755
+
+- name: shell mysql_install_db
+  copy: src=my.cnf dest=/etc/my.cnf
+- shell: /usr/bin/mysql_install_db --datadir={{datadir}} --user=root
+
+- name: copy my.cnf
+  template: src=my.cnf dest=/etc/my.cnf
+  notify:
+    - restart mysql
+
+- name: make sure mysql is running
+  service: name=mysqld state=started

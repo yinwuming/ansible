@@ -1,0 +1,17 @@
+---
+# 复制新版本的kafka安装包至kafka集群中
+- name: copy kafka_1.0 to others
+  copy: src={{kafkaPackage}} dest={{destPath}}/{{kafkaPackage}}
+
+# 解压kafka安装包
+- name: tar kafka.tgz
+  shell: cd {{destPath}}; tar -zxvf {{kafkaPackage}}
+
+# 推送配置文件至各kafka节点上
+- name: copy kafka config/server.properties to others
+  template: src=server.properties dest={{destPath}}/kafka_2.12-1.0.0/config
+  notify: restart kafka
+
+# 启动kafka
+- name: start kafka
+  shell: nohup sh {{kafkaPackage}}/kafka_2.12-1.0.0/bin/kafka-server-start.sh {{destPath}}/kafka_2.12-1.0.0/config/server.properties &

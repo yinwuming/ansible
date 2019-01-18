@@ -1,0 +1,6 @@
+---
+- hosts: webServers
+  tasks:
+    - name: debug msg
+      debug: msg="{{item.key}} & {{item.value}}"
+      with_dict: {address: 1,network: 2,gateway: 3}

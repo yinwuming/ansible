@@ -1,0 +1,2 @@
+tomcatPackage: "apache-tomcat-8.5.37.tar.gz"
+destPath: "/home/hadoop/apps"

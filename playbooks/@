@@ -1,0 +1,8 @@
+- hosts: all 
+  remote_user: root
+  tasks:
+  - name: install redis
+    yum: name=redis state=latest
+
+  - name: start redis
+    service: name=redis state=started

@@ -1,0 +1,17 @@
+---
+# 复制Tomcat至远端
+- name: copy tomcat-tar-gz
+  copy: src={{tomcatPackage}} dest="{{destPath}}/{{tomcatPackage}}"
+# 解压
+- name: tar tomcat 
+  shell: cd {{destPath}}; tar -xf {{tomcatPackage}}; mv apache-tomcat-8.5.37 tomcat
+# 推送配置文件
+- name: Configure Tomcat users
+  template: src=tomcat-users.xml dest={{destPath}}/tomcat/conf
+  notify: restart tomcat
+# 安装tomcat.init启动脚本
+- name: Install Tomcat init script
+  copy: src=tomcat-initscript.sh dest=/etc/init.d/tomcat mode=755
+# 开启Tomcat
+- name: start tomcat
+  service: name=tomcat state=started

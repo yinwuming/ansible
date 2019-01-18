@@ -1,0 +1,9 @@
+---
+- name: scp package.sh
+  copy: src=package.sh dest=/home/hadoop/git/ mode=755
+
+- name: sh package.sh
+  shell: sh /home/hadoop/git/package.sh
+
+- name: java -jar progect
+  shell: nohup java -jar /home/hadoop/git/wuming_test/target/IDEAmaven.jar > /home/hadoop/git/logs/wuming_test.log &
